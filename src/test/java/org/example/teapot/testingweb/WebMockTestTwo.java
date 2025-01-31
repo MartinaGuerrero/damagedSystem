@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,12 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.Matchers.containsString;
 
-
-
 @WebMvcTest(ReController.class)
-@AutoConfigureWebMvc
-//@ContextConfiguration(classes = {BasicConfig.class, ReController.class})
-public class WebMockTest {
+@ContextConfiguration(classes = {BasicConfig.class, StatusController.class})
+public class WebMockTestTwo {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -40,13 +36,16 @@ public class WebMockTest {
     }
 
     @Test
-    void statusShouldReturnMessageFromService() throws Exception {
+    void repareBayShouldReturnMessageFromService() throws Exception {
 //        when(service.greet()).thenReturn("Hello, Mock");
-        this.mockMvc.perform(get("/api/status")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("navigation")));
+        this.mockMvc.perform(get("/api/repairBay")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("NAV-01")));
     }
-
-
-
+//    @Test
+//    void teapotBayShouldReturnMessageFromService() throws Exception {
+////        when(service.greet()).thenReturn("Hello, Mock");
+//        this.mockMvc.perform(get("/api/teapot")).andDo(print()).andExpect(status().isOk())
+//                .andExpect(content().string(containsString("418")));
+//    }
 
 }
