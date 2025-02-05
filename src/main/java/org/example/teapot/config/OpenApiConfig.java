@@ -45,12 +45,6 @@ public class OpenApiConfig {
         servers.add(prodServer);
 
 
-        Contact contact = new Contact();
-        contact.setUrl("Contacto");
-        contact.setName("Martina");
-        contact.setEmail("martinaguerrero1914@gmail.com");
-        contact.setUrl("https://github.com/martinaguerrero1914");
-
 
         License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
 
@@ -59,11 +53,7 @@ public class OpenApiConfig {
                 .title("Teapot")
                 .version("1.0.0")
                 .description("This is supposed to be the api description")
-                .contact(contact)
                 .license(mitLicense);
-
-        info.setContact(contact);
-
 
 
         return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
